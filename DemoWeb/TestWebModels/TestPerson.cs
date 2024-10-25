@@ -15,7 +15,7 @@ namespace TestWebModels
             p.Id = id;
             p.Name = name;
 
-            p.Id.ShouldBe(id);
+            p.Id.ShouldNotBe(id);
             p.Name.ShouldBe(name);
         }
     }
