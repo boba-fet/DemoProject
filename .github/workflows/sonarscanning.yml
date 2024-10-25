@@ -44,7 +44,7 @@ jobs:
         run: dotnet restore
         working-directory: ./DemoWeb
       - name: Build
-        run: dotnet build **/*/DemoWeb.sln --no-restore
+        run: dotnet build --no-restore
         working-directory: ./DemoWeb
       - name: Test
         run: dotnet test --no-build --verbosity normal
@@ -56,5 +56,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"bobafettorg_bobafett" /o:"bobafettorg" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build
+          dotnet build **/*/DemoWeb/DemoWeb.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
