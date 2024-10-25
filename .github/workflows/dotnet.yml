@@ -6,6 +6,7 @@ name: preliminary-testing
 on:
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,9 +21,12 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: ./DemoWeb/DemoWeb
     - name: Build
       run: dotnet build --no-restore
+      working-directory: ./DemoWeb/DemoWeb
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: ./DemoWeb/DemoWeb
 
   #Add code scanning here...
